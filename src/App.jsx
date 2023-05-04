@@ -11,10 +11,9 @@ const data = [
     status: 'entering',
     delay: 0,
     happiness: 100,
-    // order: ['patty','meat','patty']
     order: {
       bun: 'default',
-      meat: true,
+      meat: 'beef',
       toppings: ['cheese', 'salad']
     }
   },{
@@ -23,10 +22,9 @@ const data = [
     status: 'entering',
     delay: 2,
     happiness: 80,
-    // order: ['patty','salad','meat','salad','patty']
     order: {
       bun: 'default',
-      meat: true,
+      meat: 'chicken',
       toppings: ['salad']
     }
   },{
@@ -35,10 +33,9 @@ const data = [
     status: 'entering',
     delay: 5,
     happiness: 95,
-    // order: ['patty','meat','cheese','patty']
     order: {
       bun: 'default',
-      meat: true,
+      meat: 'vegetarian',
       toppings: ['cheese']
     }
   }
@@ -58,6 +55,21 @@ const toppingData = {
   },
   'cheese': {
     name: 'Cheese',
+    image: null
+  }
+}
+
+const meatData = {
+  'beef': {
+    name: 'Beef',
+    image: null
+  },
+  'chicken': {
+    name: 'Chicken',
+    image: null
+  },
+  'vegetarian': {
+    name: 'Vegetarian',
     image: null
   }
 }
@@ -152,7 +164,9 @@ function Street({ children }) {
 
 function Kitchen({ guests, serveFood }) {
 
-  const foodItems = Object.entries(toppingData)
+  const toppingItems = Object.entries(toppingData)
+  const bunItems = Object.entries(bunData)
+  const meatItems = Object.entries(meatData)
 
   const [toppings, setToppings] = useState([])
 
@@ -176,7 +190,9 @@ function Kitchen({ guests, serveFood }) {
       </div>
       <div className="workplace">
         {toppings.join(',')}
-        {foodItems.map(item => <div key={item[0]} onClick={() => addTopping(item[0])} className='food-item'>{item[1].name}</div>)}
+        {toppingItems.map(item => <div key={item[0]} onClick={() => addTopping(item[0])} className='food-item'>{item[1].name}</div>)}
+        {bunItems.map(item => <div key={item[0]} onClick={() => addTopping(item[0])} className='food-item'>{item[1].name}</div>)}
+        {meatItems.map(item => <div key={item[0]} onClick={() => addTopping(item[0])} className='food-item'>{item[1].name}</div>)}
       </div>
     </div>
   )
