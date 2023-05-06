@@ -104,10 +104,6 @@ function App() {
   const [play, setPlay] = useState(false)
   const [guests, setGuests] = useState(data)
 
-  // function test() {
-  //   setGuests(guests => guests.map(guest => ({...guest, status: 'leaving'})))
-  // }
-
   function arrived(id) {
     console.log(id);
     setGuests(guests => guests.map(guest => {
@@ -156,26 +152,37 @@ function App() {
   return (
     <>
       <button className='main' onClick={() => setPlay(!play)}>toggle</button>
-      {/* <button onClick={() => test()}>test</button> */}
-      <div className="map">
-        <Street>
-          {guests.map(item => {
-            if (item.status === 'entering') return <Guest play={play} id={item.id} color={item.color} key={item.id} arrived={arrived} delay={item.delay} />
-          }
-            )}
-        </Street>
-        <BurgerShop guests={guests} setHappiness={setHappiness} />
-        <Street>
-        {guests.map(item => {
-          if (item.status === 'leaving') return <Guest play={play} id={item.id} color={item.color} key={item.id} arrived={finished} delay={0} />
-        }
-            )}
-        </Street>
-      </div>
-      <div className="game">
-        <Kitchen guests={guests} serveFood={serveFood} />
-      </div>
+      <Map guests={guests} play={play} arrived={arrived} setHappiness={setHappiness} finished={finished} />
+      <Restaurant guests={guests} serveFood={serveFood} />
     </>
+  )
+}
+
+function Map({ guests, play, arrived, setHappiness, finished }) {
+  return (
+    <div className="map">
+      <Street>
+        {guests.map(item => {
+          if (item.status === 'entering') return <Guest play={play} id={item.id} color={item.color} key={item.id} arrived={arrived} delay={item.delay} />
+        }
+          )}
+      </Street>
+      <BurgerShop guests={guests} setHappiness={setHappiness} />
+      <Street>
+      {guests.map(item => {
+        if (item.status === 'leaving') return <Guest play={play} id={item.id} color={item.color} key={item.id} arrived={finished} delay={0} />
+      }
+          )}
+      </Street>
+    </div>
+  )
+}
+
+function Restaurant({ guests, serveFood }) {
+  return (
+    <div className="restaurant">
+      <Kitchen guests={guests} serveFood={serveFood} />
+    </div>
   )
 }
 
