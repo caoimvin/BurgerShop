@@ -14,7 +14,8 @@ const data = [
     order: {
       bun: 'default',
       meat: 'beef',
-      toppings: ['cheese', 'salad']
+      toppings: ['cheese', 'salad'],
+      extras: []
     }
   },{
     id: 2,
@@ -25,7 +26,8 @@ const data = [
     order: {
       bun: 'default',
       meat: 'chicken',
-      toppings: ['salad']
+      toppings: ['salad'],
+      extras: []
     }
   },{
     id: 3,
@@ -36,7 +38,8 @@ const data = [
     order: {
       bun: 'default',
       meat: 'vegetarian',
-      toppings: ['cheese']
+      toppings: ['cheese'],
+      extras: []
     }
   }
 ]
@@ -70,6 +73,29 @@ const meatData = {
   },
   'vegetarian': {
     name: 'Vegetarian',
+    image: null
+  }
+}
+
+const extraData = {
+  'coke': {
+    name: 'Coke',
+    image: null
+  },
+  'juice': {
+    name: 'Juice',
+    image: null
+  },
+  'fries': {
+    name: 'Fries',
+    image: null
+  },
+  'shake': {
+    name: 'Milkshake',
+    image: null
+  },
+  'sweet': {
+    name: 'Sweet',
     image: null
   }
 }
@@ -167,32 +193,105 @@ function Kitchen({ guests, serveFood }) {
   const toppingItems = Object.entries(toppingData)
   const bunItems = Object.entries(bunData)
   const meatItems = Object.entries(meatData)
+  const extraItems = Object.entries(extraData)
 
-  const [toppings, setToppings] = useState([])
+  const [order, setOrder] = useState({
+    bun: null,
+    meat: null,
+    toppings: [],
+    extras: []
+  })
 
   function addTopping(item) {
-    setToppings(current => [...current, item])
+    setOrder(current => ({...current, toppings: [...current.toppings, item]}))
+  }
+
+  function addExtra(item) {
+    setOrder(current => ({...current, extras: [...current.extras, item]}))
+  }
+
+  function addBun(item) {
+    setOrder(current => ({...current, bun: item}))
+  }
+
+  function addMeat(item) {
+    setOrder(current => ({...current, meat: item}))
   }
 
   function serveOrder(id) {
-    serveFood(id, toppings)
-    setToppings([])
+    serveFood(id, order)
+    setOrder({
+      bun: null,
+      meat: null,
+      toppings: [],
+      extras: []
+    })
   }
 
   return (
     <div className="kitchen">
-      <div className="orders">
-        {
-          guests.map(guest => {
-            if (guest.status === 'waiting') return <Order key={guest.id} serveOrder={serveOrder} guest={guest} />
-          })
-        }
-      </div>
       <div className="workplace">
-        {toppings.join(',')}
-        {toppingItems.map(item => <div key={item[0]} onClick={() => addTopping(item[0])} className='food-item'>{item[1].name}</div>)}
-        {bunItems.map(item => <div key={item[0]} onClick={() => addTopping(item[0])} className='food-item'>{item[1].name}</div>)}
-        {meatItems.map(item => <div key={item[0]} onClick={() => addTopping(item[0])} className='food-item'>{item[1].name}</div>)}
+        <h1>Burger Shop</h1>
+        <ItemList title="Bun" items={bunItems} addItem={addBun} />
+        <ItemList title="Meat" items={meatItems} addItem={addMeat} />
+        <ItemList title="Toppings" items={toppingItems} addItem={addTopping} />
+        <ItemList title="Extras" items={extraItems} addItem={addExtra} />
+      </div>
+      <div className="orders">
+        <Orders guests={guests} serveOrder={serveOrder} />
+        <div className="order-kitchen">
+          <OrderPreview order={order} />
+          <button>delete food</button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function Orders({ guests, serveOrder }) {
+  return (
+    <div className="order-items">
+      {
+        guests.map((guest, index) => {
+          if (guest.status === 'waiting') return <Order key={guest.id} index={index} serveOrder={serveOrder} guest={guest} />
+        })
+      }
+    </div>
+  )
+}
+
+function ItemList({ title, items, addItem }) {
+  return (
+    <div className="item-list">
+      <div className="item-list-title">
+        { title }
+      </div>
+      <div className="item-list-content">
+        {items.map(item => <div key={item[0]} onClick={() => addItem(item[0])} className='item'>{item[1].name}</div>)}
+      </div>
+    </div>
+  )
+}
+
+function OrderPreview({ order }) {
+  return (
+    <div className="order-preview">
+      <div className="burger">
+        <div className="bun-top">
+          {order.bun}
+        </div>
+        <div className="toppings">
+          {order.toppings.map((topping, index) => <div key={index}>{topping}</div>)}
+        </div>
+        <div className="meat">
+          {order.meat}
+        </div>
+        <div className="bun-button">
+          {order.bun}
+        </div>
+      </div>
+      <div className="extras">
+        {order.extras.map((extra, index) => <div key={index}>{extra}</div>)}
       </div>
     </div>
   )
@@ -221,11 +320,22 @@ function BurgerShop({ guests, setHappiness }) {
   )
 }
 
-function Order({ guest, serveOrder }) {
+function Order({ guest, serveOrder, index }) {
   return (
-    <div className={styles.order} style={{borderColor: guest.color}} onClick={() => serveOrder(guest.id)}>
-      {guest.order.toppings.map(item => item).join(',')}
-      {guest.happiness}
+    <div className="order">
+      <div className="guest-image">
+        {guest.color}
+        <div className="happiness">
+          {guest.happiness}
+        </div>
+      </div>
+      <div className="guest-number">
+        {index + 1}
+      </div>
+      <div className="guest-order">
+        <OrderPreview order={guest.order} />
+      </div>
+      <button onClick={() => serveOrder(guest.id)}>serve food</button>
     </div>
   )
 }
