@@ -1,15 +1,12 @@
 const meat = {
     'beef': {
-      name: 'Beef',
-      image: null
+      name: 'Beef'
     },
     'chicken': {
-      name: 'Chicken',
-      image: null
+      name: 'Chicken'
     },
     'vegetarian': {
-      name: 'Vegetarian',
-      image: null
+      name: 'Vegetarian'
     }
   }
 

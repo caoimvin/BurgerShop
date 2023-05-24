@@ -1,7 +1,9 @@
 const buns = {
     'default': {
-      name: 'Default Bun',
-      image: null
+      name: 'Default Bun'
+    },
+    'bread': {
+      name: 'Bread Bun'
     }
   }
 

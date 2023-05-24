@@ -1,23 +1,18 @@
 const extras = {
     'coke': {
-      name: 'Coke',
-      image: null
+      name: 'Coke'
     },
     'juice': {
-      name: 'Juice',
-      image: null
+      name: 'Juice'
     },
     'fries': {
-      name: 'Fries',
-      image: null
+      name: 'Fries'
     },
-    'shake': {
-      name: 'Milkshake',
-      image: null
+    'milkshake': {
+      name: 'Milkshake'
     },
     'sweet': {
-      name: 'Sweet',
-      image: null
+      name: 'Sweet'
     }
   }
 

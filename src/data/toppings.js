@@ -1,11 +1,18 @@
 const toppings = {
     'salad': {
-      name: 'Salad',
-      image: null
+      name: 'Salad'
     },
     'cheese': {
-      name: 'Cheese',
-      image: null
+      name: 'Cheese'
+    },
+    'onions': {
+      name: 'Onions'
+    },
+    'pickles': {
+      name: 'Pickles'
+    },
+    'tomatoes': {
+      name: 'Tomatoes'
     }
   }
 
