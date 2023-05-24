@@ -1,0 +1,23 @@
+.burgerShop {
+    height: 200px;
+    width: 300px;
+    background: url("../../assets/burgershop.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    flex-shrink: 0;
+    border-bottom: 4px solid grey;
+    /* position: absolute; */
+    top: -200px;
+    position: relative;
+}
+
+.burgerShop:after {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 0;
+    background: url("../../assets/smoke.gif");
+    width: 100px;
+    height: 100px;
+    background-repeat: no-repeat;
+}

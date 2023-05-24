@@ -6,8 +6,9 @@ import bunData from "../../data/buns.js"
 import meatData from "../../data/meat.js"
 import extraData from "../../data/extras.js"
 import { useState } from "react"
+import styles from "./Kitchen.module.css"
 
-function Kitchen({ guests, serveFood }) {
+function Kitchen({ guests, serveFood, play }) {
 
     const toppingItems = Object.entries(toppingData)
     const bunItems = Object.entries(bunData)
@@ -22,23 +23,33 @@ function Kitchen({ guests, serveFood }) {
     })
   
     function addTopping(item) {
+      if (!play) return
       setOrder(current => ({...current, toppings: [...current.toppings, item]}))
     }
   
     function addExtra(item) {
+      if (!play) return
       setOrder(current => ({...current, extras: [...current.extras, item]}))
     }
   
     function addBun(item) {
+      if (!play) return
       setOrder(current => ({...current, bun: item}))
     }
   
     function addMeat(item) {
+      if (!play) return
       setOrder(current => ({...current, meat: item}))
     }
   
     function serveOrder(id) {
+      if (!play) return
       serveFood(id, order)
+      deleteFood()
+    }
+    
+    function deleteFood() {
+      if (!play) return
       setOrder({
         bun: null,
         meat: null,
@@ -48,19 +59,21 @@ function Kitchen({ guests, serveFood }) {
     }
   
     return (
-      <div className="kitchen">
-        <div className="workplace">
-          <h1>Burger Shop</h1>
-          <ItemList title="Bun" items={bunItems} addItem={addBun} />
-          <ItemList title="Meat" items={meatItems} addItem={addMeat} />
-          <ItemList title="Toppings" items={toppingItems} addItem={addTopping} />
-          <ItemList title="Extras" items={extraItems} addItem={addExtra} />
+      <div className={styles.kitchen}>
+        <div className={styles.workplace}>
+          <div className={styles.label}>
+            Burger Shop
+          </div>
+          <ItemList title="Buns" category="buns" items={bunItems} addItem={addBun} />
+          <ItemList title="Meat" category="meat" items={meatItems} addItem={addMeat} />
+          <ItemList title="Toppings" category="toppings" items={toppingItems} addItem={addTopping} />
+          <ItemList title="Extras" category="extras" items={extraItems} addItem={addExtra} />
         </div>
-        <div className="orders">
+        <div className={styles.orders}>
           <Orders guests={guests} serveOrder={serveOrder} />
           <div className="order-kitchen">
             <OrderPreview order={order} />
-            <button>delete food</button>
+            <button onClick={() => deleteFood()}>delete food</button>
           </div>
         </div>
       </div>

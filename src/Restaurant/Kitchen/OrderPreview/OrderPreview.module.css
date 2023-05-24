@@ -1,0 +1,40 @@
+.burger {
+    position: relative;
+    width: 120px;
+}
+
+.burger .bunTop {
+    height: 30px;
+}
+
+.burger .bunBottom {
+    height: 20px;
+}
+
+.burger .meat {
+    height: 20px;
+}
+
+.toppings {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.toppings > img {
+    height: 10px;
+    width: 100px;
+}
+
+.toppings .salad {
+    height: 20px;
+}
+
+.toppings .cheese {
+    margin-bottom: -5px;
+    z-index: 1;
+}
+
+.orderPreview {
+    display: flex;
+}

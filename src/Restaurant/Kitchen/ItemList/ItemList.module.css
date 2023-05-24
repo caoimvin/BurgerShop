@@ -1,0 +1,20 @@
+.item_list_title {
+    text-align: start;
+}
+
+.item_list_content {
+    display: flex;
+}
+
+.item_list_content .item {
+    background: #a05c53;
+    border-radius: 10px;
+    border: 2px solid #7b444a;
+    padding: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.item_list_content .item:active {
+    background: #8a4f47;
+}

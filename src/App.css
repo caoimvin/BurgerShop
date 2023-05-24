@@ -1,7 +1,8 @@
 #root {
-  max-width: 1280px;
+  /* max-width: 1280px; */
+  width: 100%;
   margin: 0 auto;
-  padding: 2rem;
+  /* padding: 2rem; */
   text-align: center;
 }
 
@@ -9,18 +10,22 @@
   width: 100%;
   height: 4px;
   min-width: 400px;
-  background: brown;
+  background: grey;
   position: relative;
 }
 
-.guest {
-  background: chartreuse;
-  height: 40px;
-  width: 40px;
+/* .guest {
+  height: 30px;
+  width: 10px;
   position: absolute;
   left: 0;
   bottom: 4px;
   animation: move 5s linear forwards;
+} */
+
+/* .guest > div {
+  height: calc(100% / 3);
+  width: 100%;
 }
 
 .guest.paused {
@@ -32,19 +37,19 @@
   width: 200px;
   height: 100px;
   display: flex;
-}
+} */
 
 .map {
   display: flex;
 }
 
-button.main {
+/* button.main {
   position: fixed;
   top: 100px;
   left: 100px;
-}
+} */
 
-@keyframes move {
+/* @keyframes move {
   from {
     left: 0;
   } to {
@@ -52,6 +57,17 @@ button.main {
   }
 }
 
+@keyframes moveInsideBurgerShop {
+  0% {
+    left: 10%;
+  }
+  50% {
+    left: 80%;
+  }
+  100% {
+    left: 10%;
+  }
+} */
 /* @keyframes walk {
   from {
     transform: rotate(-5deg);

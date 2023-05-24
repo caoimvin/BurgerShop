@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import styles from "./Guest.module.css"
 
-function Guest({ play, id, color, arrived, delay }) {
+function Guest({ play, id, color, speed, arrived, delay, inside, happiness }) {
     const [moving, setMoving] = useState(false)
     const guest = useRef()
     
@@ -19,9 +20,20 @@ function Guest({ play, id, color, arrived, delay }) {
         }
       }
     }, [])
+
+    function getMood() {
+      if (!happiness && happiness != 0) return ''
+      if (happiness > 70) return 'happy'
+      else if (happiness > 40) return 'normal'
+      else return 'sad'
+    }
   
     return (
-      <div className={`guest ${moving ? 'moving' : 'stopped'} ${play ? '' : 'paused'}`} ref={guest} style={{background: color, animationDelay: `${delay}s`}}></div>
+      <div className={`${styles.guest} ${moving ? styles.moving : styles.stopped} ${play ? '' : styles.paused} ${inside ? styles.inside : ''} ${styles[getMood()]}`} ref={guest} style={{animationDelay: `${delay}s`, animationDuration: `${speed}s`}}>
+        <div style={{ background: color[0] }}></div>
+        <div style={{ background: color[1] }}></div>
+        <div style={{ background: color[2] }}></div>
+      </div>
     )
   }
   

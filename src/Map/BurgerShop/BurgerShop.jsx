@@ -1,21 +1,38 @@
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
+import styles from "./BurgerShop.module.css"
+import Guest from "../Street/Guest/Guest"
 
-function BurgerShop({ guests, setHappiness }) {
+function BurgerShop({ guests, setHappiness, play }) {
 
-    useEffect(() => {
-      const interval = setInterval(() => {
+    const interval = useRef()
+
+    function startInterval() {
+      interval.current = setInterval(() => {
         guests.forEach(guest => {
-          if (guest.status === 'waiting') setHappiness(guest.id, guest.happiness - 10)
+          if (guest.status === 'waiting') setHappiness(guest.id, guest.happiness - 1)
         })
       }, 1000)
-      return () => clearInterval(interval)
+    }
+
+    function stopInterval() {
+      if (interval.current) clearInterval(interval.current)
+    }
+
+    useEffect(() => {
+      startInterval()
+      return () => stopInterval()
     }, [guests])
+
+    useEffect(() => {
+      if (!play) stopInterval()
+      else startInterval()
+    }, [play])
   
     return (
-      <div className="burger-shop">
+      <div className={styles.burgerShop}>
         {
           guests.map(guest => {
-            if (guest.status === 'waiting') return <p key={guest.id}>serve guest: {guest.id}</p>
+            if (guest.status === 'waiting') return <Guest play={play} inside={true} id={guest.id} color={guest.color} speed={guest.speed} key={guest.id} delay={0} />
           })
         }
         

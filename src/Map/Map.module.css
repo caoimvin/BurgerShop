@@ -1,0 +1,4 @@
+.map {
+    display: flex;
+    background: linear-gradient(0deg, rgba(255,255,255,0) 15%, rgb(200, 200, 200) 80%);
+}

@@ -1,9 +1,10 @@
 import Kitchen from '../Restaurant/Kitchen/Kitchen.jsx'
+import styles from './Restaurant.module.css'
 
-function Restaurant({ guests, serveFood }) {
+function Restaurant({ guests, serveFood, play }) {
     return (
-      <div className="restaurant">
-        <Kitchen guests={guests} serveFood={serveFood} />
+      <div className={styles.restaurant}>
+        <Kitchen guests={guests} serveFood={serveFood} play={play} />
       </div>
     )
   }

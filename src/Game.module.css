@@ -1,0 +1,25 @@
+.game_menu {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: grid;
+    place-items: center;
+}
+
+.game_menu_container {
+    width: 80%;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.pause_button {
+    position: fixed;
+    top: 20px;
+    left: 50px;
+}

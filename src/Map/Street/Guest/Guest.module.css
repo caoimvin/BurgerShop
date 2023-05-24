@@ -1,0 +1,93 @@
+.guest {
+    /* background: chartreuse; */
+    height: 30px;
+    width: 10px;
+    position: absolute;
+    left: 0;
+    bottom: 4px;
+    animation: move 5s linear forwards;
+  }
+  
+  .guest > div {
+    height: calc(100% / 3);
+    width: 100%;
+  }
+  
+  .guest.paused {
+    animation-play-state: paused !important;
+  }
+
+.guest.inside {
+    animation: moveInsideBurgerShop 5s linear infinite;
+    bottom: 0;
+    z-index: -1;
+}
+
+.guest.moving {
+
+}
+
+.guest.stopped {
+
+}
+
+.guest.sad:after, .guest.happy:after, .guest.normal:after {
+  position: absolute;
+  content: "";
+  width: 10px;
+  height: 10px;
+  top: -20px;
+  left: 0;
+  background: black;
+  animation: moodEmotion 1s linear infinite alternate;
+}
+
+.guest.sad:after {
+  background: url('../../../assets/emotion/sad.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.guest.normal:after {
+  background: url('../../../assets/emotion/normal.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.guest.happy:after {
+  background: url('../../../assets/emotion/happy.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* .guest:first-child {
+    animation-duration: 20s !important;
+} */
+
+@keyframes move {
+    from {
+      left: 0;
+    } to {
+      left: 100%;
+    }
+  }
+  
+  @keyframes moveInsideBurgerShop {
+    0% {
+      left: 10%;
+    }
+    50% {
+      left: 80%;
+    }
+    100% {
+      left: 10%;
+    }
+  }
+
+@keyframes moodEmotion {
+  from {
+    top: -25px;
+  } to {
+    top: -15px;
+  }
+}
