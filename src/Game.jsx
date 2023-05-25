@@ -6,6 +6,7 @@ import Map from './Map/Map.jsx'
 import Restaurant from './Restaurant/Restaurant.jsx'
 import guestData from './data/guests.js'
 import styles from './Game.module.css'
+import Footer from './Footer'
 
 function Game() {
   const [play, setPlay] = useState(false)
@@ -115,6 +116,7 @@ function Game() {
       </div> }
       <Map guests={guests} play={play} arrived={arrived} setHappiness={setHappiness} finished={finished} />
       <Restaurant guests={guests} serveFood={serveFood} play={play} />
+      <Footer />
     </div>
   )
 }
