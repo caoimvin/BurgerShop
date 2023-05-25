@@ -3,11 +3,6 @@ import Order from "./Order/Order.jsx"
 import styles from "./Orders.module.css"
 
 function Orders({ guests, serveOrder }) {
-
-    // const orders = guests.filter(guest => guest.entered && guest.status === 'waiting')
-
-    // console.log(orders);
-
     const [orders, setOrders] = useState([])
     const [activeOrder, setActiveOrder] = useState(0)
 
@@ -28,13 +23,13 @@ function Orders({ guests, serveOrder }) {
     }
 
     return (
-      <div className={styles.oder_items}>
-        {
-          orders[activeOrder] && <Order key={orders[activeOrder].id} index={activeOrder} max={orders.length} serveOrder={serveOrder} guest={orders[activeOrder]} next={nextOrder} prev={prevOrder} />
-          // guests.map((guest, index) => {
-          //   if (guest.entered && guest.status === 'waiting') return <Order key={guest.id} index={index} serveOrder={serveOrder} guest={guest} />
-          // })
-        }
+      <div className={styles.orders}>
+        <div className={styles.label}>Guests</div>
+        <div className={styles.order_items}>
+          {
+            orders[activeOrder] && <Order key={orders[activeOrder].id} index={activeOrder} max={orders.length} serveOrder={serveOrder} guest={orders[activeOrder]} next={nextOrder} prev={prevOrder} />
+          }
+        </div>
       </div>
     )
   }
