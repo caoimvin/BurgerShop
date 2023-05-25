@@ -72,6 +72,7 @@ function Kitchen({ guests, serveFood, play }) {
         <div className={styles.orders}>
           <Orders guests={guests} serveOrder={serveOrder} />
           <div className="order-kitchen">
+            <div className={styles.label}>Food</div>
             <OrderPreview order={order} />
             <button onClick={() => deleteFood()}>delete food</button>
           </div>

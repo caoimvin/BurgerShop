@@ -1,6 +1,4 @@
 .order {
-  background: grey;
-  margin: 10px;
   border: 1px solid grey;
 }
 
@@ -9,7 +7,12 @@
 }
 
 .label, .guest_number {
-  background: red;
+  /* background: red; */
+  display: flex;
+}
+
+.guest_number {
+  width: 60%;
 }
 
 .guest_order {
@@ -19,6 +22,7 @@
 .guest_image {
   height: 30px;
   width: 10px;
+  margin: auto;
 }
 
 .guest_image > div {

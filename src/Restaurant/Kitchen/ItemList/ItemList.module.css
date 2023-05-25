@@ -1,20 +1,36 @@
+.item_list {
+    margin-top: 20px;
+}
+
 .item_list_title {
     text-align: start;
+    border-bottom: 1px solid #213547;
 }
 
 .item_list_content {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .item_list_content .item {
-    background: #a05c53;
-    border-radius: 10px;
-    border: 2px solid #7b444a;
     padding: 10px;
     margin-right: 10px;
     cursor: pointer;
 }
 
+.item_list_content .item img {
+    margin-top: 10px;
+    transition: transform 0.1s ease-in-out;
+}
+
+.item_list_content .item:hover {
+    background: #21354729;
+}
+
 .item_list_content .item:active {
-    background: #8a4f47;
+    background: #2135474b;
+}
+
+.item_list_content .item:active img {
+    transform: scale(1.1);
 }

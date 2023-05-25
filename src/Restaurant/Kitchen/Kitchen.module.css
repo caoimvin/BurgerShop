@@ -1,10 +1,5 @@
 .kitchen {
     display: flex;
-    background: #56323e;
-    color: #ddeff1;
-    border-radius: 10px;
-    padding: 20px;
-    border: 5px solid #7b444a;
 }
 
 .workplace {
@@ -16,5 +11,6 @@
 }
 
 .label {
-    background: red;
+    text-align: start;
+    font-weight: bold;
 }

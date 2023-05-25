@@ -1,3 +1,8 @@
+.orders .label {
+    text-align: start;
+    font-weight: bold;
+}
+
 .order_items {
-    
+    margin-top: 20px;
 }
